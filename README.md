@@ -1,6 +1,10 @@
 # deal-streaming
 
-Deal streaming service is a service with two HTTP endpoints. The first endpoint aggregates `ProductPrice` changes via incoming POST requests. The second endpoint serves as a search on `ProductPrice` entities for the cheapest price matching the SKU.  
+Deal streaming service is a service written in python using flask, with two HTTP endpoints. The root URL for both endpoints is `/product-price`. 
+
+The first endpoint aggregates `ProductPrice` changes via POST requests. 
+
+The second endpoint serves as a search on `ProductPrice` entities for the cheapest price matching the SKU. This request is a GET.  
 
 ## Local requirements
 
