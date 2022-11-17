@@ -1,5 +1,12 @@
 # deal-streaming
 
+Deal streaming service is a service with two HTTP endpoints. The first endpoint aggregates `ProductPrice` changes via incoming POST requests. The second endpoint serves as a search on `ProductPrice` entities for the cheapest price matching the SKU.  
+
+## Local requirements
+
+- Python 3.9
+- openapi-generator (for generating python code from api spec)
+
 ## Running the code
 
 ```
@@ -25,8 +32,7 @@ $ git tag -a <version> -m "<tag message>"
 $ git push origin <version>
 ```
 
-GitHub will run the `build-and-publish.yaml` workflow, resulting in a docker image being pushed to GitHub Container 
-Registry if CI/CD completes successfully.
+GitHub will run the `build-and-publish.yaml` workflow, resulting in a docker image being pushed to GitHub Container Registry if CI/CD completes successfully.
 
 ## Postman integration
 
