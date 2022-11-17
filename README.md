@@ -27,3 +27,7 @@ $ git push origin <version>
 
 GitHub will run the `build-and-publish.yaml` workflow, resulting in a docker image being pushed to GitHub Container 
 Registry if CI/CD completes successfully.
+
+## Postman integration
+
+`api.postman_collection.json` can be imported into Postman for easier api testing.
