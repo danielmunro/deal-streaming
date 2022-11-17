@@ -1,0 +1,53 @@
+openapi: "3.0.0"
+info:
+  title: Deal streaming
+  version: "1.0"
+paths:
+  /product-price:
+    post:
+      operationId: addProductPrice
+      summary: receive a new product price from a participating retailer
+      requestBody:
+        description: the new product price to record
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductPrice"
+      responses:
+        '201':
+          description: 201 product price received
+    get:
+      operationId: searchForProductPrice
+      summary: search for a product price via an SKU
+      parameters:
+        - in: query
+          name: sku
+          schema:
+            type: string
+          description: the SKU to search for
+      responses:
+        '200':
+          description: a list of products matching the provided SKU
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductPrice"
+components:
+  schemas:
+    ProductPrice:
+      required:
+        - sku
+        - price
+        - retailer
+      properties:
+        sku:
+          type: string
+        price:
+          type: number
+        retailer:
+          type: string
+        url:
+          type: string

@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "6a07d747-a6f0-4a64-a1e9-0dca91f321a0",
+		"name": "Deal streaming",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search for product price by sku",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/product-price?sku=baz",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"product-price"
+					],
+					"query": [
+						{
+							"key": "sku",
+							"value": "baz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new product price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"retailer\": \"foobar\",\n    \"sku\": \"baz\",\n    \"price\": 3.78\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/product-price",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"product-price"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:8080"
+		}
+	]
+}

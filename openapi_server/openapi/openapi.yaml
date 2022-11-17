@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: Deal streaming
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /product-price:
+    get:
+      operationId: search_for_product_price
+      parameters:
+      - description: the SKU to search for
+        explode: true
+        in: query
+        name: sku
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductPrice'
+                type: array
+          description: a list of products matching the provided SKU
+      summary: search for a product price via an SKU
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+    post:
+      operationId: add_product_price
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductPrice'
+        description: the new product price to record
+        required: true
+      responses:
+        "201":
+          description: 201 product price received
+      summary: receive a new product price from a participating retailer
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas:
+    ProductPrice:
+      example:
+        retailer: retailer
+        price: 0.8008281904610115
+        sku: sku
+        url: url
+      properties:
+        sku:
+          title: sku
+          type: string
+        price:
+          title: price
+          type: number
+        retailer:
+          title: retailer
+          type: string
+        url:
+          title: url
+          type: string
+      required:
+      - price
+      - retailer
+      - sku
+      title: ProductPrice

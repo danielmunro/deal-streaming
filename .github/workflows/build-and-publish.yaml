@@ -1,0 +1,19 @@
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  publish-docker-image:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: python test.py
+      - run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u danielmunro --password-stdin
+      - run: docker build -t ghcr.io/danielmunro/deal-streaming:${{ github.ref_name }} .
+      - run: docker push ghcr.io/danielmunro/deal-streaming:${{ github.ref_name }}
